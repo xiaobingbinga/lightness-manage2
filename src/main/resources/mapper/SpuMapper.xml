@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuetang9.qingying.mapper.SpuMapper">
+
+
+    <select id="selectVOByCondition"
+            parameterType="com.xuetang9.qingying.domain.query.GoodsQuery"
+            resultType="com.xuetang9.qingying.domain.vo.SpuVO">
+        select
+            s.id,
+            s.name,
+            c.name category_name,
+            b.name brand_name
+        from xt_spu s
+            inner join xt_category c on s.category_id3 = c.id
+            inner join xt_brand b on s.brand_id = b.id
+        <where>
+            <if test="brandId != null">
+                and brand_id = #{brandId}
+            </if>
+            <if test="name != null and name != ''">
+                <bind name="namePattern" value="'%' + name + '%'"/>
+                and s.name like #{namePattern}
+            </if>
+            <if test="categoryId != null">
+                and
+                (
+                    category_id1 = #{categoryId}
+                    or category_id2 = #{categoryId}
+                    or category_id3 = #{categoryId}
+                )
+            </if>
+        </where>
+    </select>
+</mapper>

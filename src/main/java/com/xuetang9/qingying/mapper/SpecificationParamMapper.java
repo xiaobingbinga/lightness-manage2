@@ -1,0 +1,13 @@
+package com.xuetang9.qingying.mapper;
+
+import com.xuetang9.qingying.domain.SpecificationParam;
+import tk.mybatis.mapper.common.Mapper;
+
+/**
+ * @author Lucky
+ * @version 1.0.0
+ * @date 2020/7/17 11:55
+ * @copyright 老九学堂
+ */
+public interface SpecificationParamMapper extends Mapper<SpecificationParam> {
+}
